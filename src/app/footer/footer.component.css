@@ -1,0 +1,13 @@
+.footer {
+  background-color: #C0C0C0;
+  font-size: small;
+  font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-footer {
+  color: antiquewhite;
+  margin: 10px 0 10px 0;
+}

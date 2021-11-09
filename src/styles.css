@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
+  background: #dceff2
+}
+
+.snackbar {
+  min-width: 600px !important;
+  min-height: 100px !important;
+  white-space: pre-wrap
+}
+
+.mat-expansion-panel-header-description {
+  color: #000;
+}
+

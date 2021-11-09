@@ -1,0 +1,55 @@
+<div class="header">
+  <div class="upper-header">
+            <span>
+                <a href="/"><img src="/assets/logo.png" [height]="250" [width]="550" alt="Логотип"/></a>
+            </span>
+    <span class="info">
+                        ул.Пушкина, д.133, Минск<br/>
+                        с 10:00 до 22:00 без выходных<br/>
+                        <img src="/assets/phone.png" [height]="38" [width]="38" alt="Телефон"/>
+                        (029) 378 25 38<br/>
+                        <img src="/assets/map.jpg" [height]="45" [width]="30" alt="Карта"/>
+                        <a class="map_link" href="/map">Мы на карте</a>
+            </span>
+<!--    <div *ngif="${#authorization.expression('isAnonymous()')}" class="unauthorized">-->
+    <div class="unauthorized">
+      <span class="authorization">
+        <ul>
+          <li>
+            <a href="/signUp">Регистрация</a>
+          </li>
+        </ul>
+      </span>
+      <span class="authorization">
+        <ul>
+          <li>
+            <a href="/login">Авторизация</a>
+          </li>
+        </ul>
+      </span>
+    </div>
+
+<!--    <div class="authorized">-->
+<!--      &lt;!&ndash;    <div th:if="${#authorization.expression('hasAuthority(''USER'')')}" class="authorization">&ndash;&gt;-->
+<!--      <div class="authorization">-->
+<!--        <button class="logout" (click)="redirect('office')">Личный кабинет</button>-->
+<!--      </div>-->
+<!--      &lt;!&ndash;    <div th:if="${#authorization.expression('isAuthenticated()')}" class="authorization">&ndash;&gt;-->
+<!--      <div class="authorization">-->
+<!--        <button class="logout" (click)="logout()">Выйти</button>-->
+<!--      </div>-->
+<!--    </div>-->
+
+  </div>
+  <div class="bottom-header">
+    <div class="nav_hor">
+      <ul>
+        <li><a href="/services">Услуги и цены</a></li>
+        <li><a href="/reviews">Отзывы</a></li>
+        <li><a href="/doctors">Записаться на приём</a></li>
+<!--        <li th:if="${#authorization.expression('hasAuthority(''USER'')')}"><a th:href="@{/appointments}">Мои записи</a></li>-->
+<!--        <li><a href="/appointments">Мои записи</a></li>-->
+      </ul>
+    </div>
+  </div>
+</div>

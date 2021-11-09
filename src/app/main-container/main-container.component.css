@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-right: 3%;
+  padding-left: 3%;
+}
+
+router-outlet {
+  flex-basis: 30%;
+}

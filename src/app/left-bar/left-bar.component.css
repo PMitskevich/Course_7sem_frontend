@@ -1,0 +1,48 @@
+.left-bar ul li {
+  font-size: 1em !important;
+  list-style: none !important;
+}
+
+.left-bar li, .submitButton {
+  background: none repeat scroll 0 0 #1e696f;
+  font-weight: 200;
+  margin-bottom: 5px;
+  margin-left: -40px;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.left-bar li:hover, .submitButton:hover {
+  background: none repeat scroll 0 0 #5cd1d1;
+  font-weight: 200;
+  margin-bottom: 5px;
+  margin-left: -40px;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.left-bar li a, .submitButton {
+  color: #fff;
+  font-size: 17px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  border: none;
+}
+
+.left-bar li a:hover, .submitButton:hover {
+  color: #fff;
+  font-size: 17px;
+  text-decoration: underline;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  border: none;
+}
