@@ -1,6 +1,8 @@
 .left-bar ul li {
-  font-size: 1em !important;
+  font-size: 14px !important;
   list-style: none !important;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .left-bar li, .submitButton {
@@ -10,7 +12,7 @@
   margin-left: -40px;
   padding: 20px 10px;
   text-align: center;
-  border-radius: 2px;
+  border-radius: 8px;
 }
 
 .left-bar li:hover, .submitButton:hover {
@@ -20,7 +22,9 @@
   margin-left: -40px;
   padding: 20px 10px;
   text-align: center;
-  border-radius: 2px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .left-bar li a, .submitButton {

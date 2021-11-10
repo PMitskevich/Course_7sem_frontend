@@ -153,4 +153,10 @@
 
 .nav_hor li a {
   color: white;
+  text-decoration: none;
+}
+
+.nav_hor li a:hover {
+  color: white;
+  text-decoration: underline;
 }

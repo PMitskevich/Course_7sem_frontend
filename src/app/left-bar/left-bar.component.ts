@@ -15,6 +15,13 @@ export class LeftBarComponent implements OnInit {
     description: "Врач, лечащий крыс",
     doctor: undefined,
     medicalServiceEntities: undefined
+  },
+  {
+    id: "2",
+    name: "Ветеринар",
+    description: "Врач общей практики",
+    doctor: undefined,
+    medicalServiceEntities: undefined
   }];
 
   constructor() { }
