@@ -9,6 +9,15 @@ import { HeaderComponent } from './header/header.component';
 import { LeftBarComponent } from './left-bar/left-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {InterceptorService} from "./service/interceptor.service";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -17,14 +26,28 @@ import { HomepageComponent } from './homepage/homepage.component';
     HeaderComponent,
     LeftBarComponent,
     FooterComponent,
-    HomepageComponent
+    HomepageComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

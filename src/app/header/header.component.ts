@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {SignInComponent} from "../sign-in/sign-in.component";
+import {User} from "../model/User";
+import {StorageService} from "../service/storage.service";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'app-header',
@@ -8,9 +13,17 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  isAuthenticated: boolean;
+
+  constructor(private router: Router,
+              private dialog: MatDialog,
+              private storageService: StorageService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
+    if (this.storageService.currentUser) {
+      this.isAuthenticated = true;
+    }
   }
 
   redirect(url: string): void {
@@ -18,7 +31,15 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    //Дописать логику для logout
+    this.userService.logout();
+    StorageService.clear();
     this.router.navigate(['']);
+  }
+
+  openSignInDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    this.dialog.open(SignInComponent, dialogConfig);
   }
 }

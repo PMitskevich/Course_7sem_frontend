@@ -11,6 +11,7 @@ export class User {
   status: Status | undefined;
   owner: Owner | undefined;
   reviews: Review[] | undefined;
+  isAuthenticated: boolean;
 
   constructor() {
   }

@@ -1,0 +1,76 @@
+<h2 mat-dialog-title>Авторизация</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+  <mat-form-field>
+    <input matInput
+           placeholder="Почта"
+           formControlName="login">
+  </mat-form-field><br>
+
+  <mat-form-field>
+    <input matInput
+           type="password"
+           placeholder="Пароль"
+           formControlName="password">
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Отмена</button>
+  <button mat-button color="primary" [disabled]="form.invalid" (click)="logIn()">Войти</button>
+</mat-dialog-actions>
+
+<!--<div class="login-dialog-container">-->
+<!--  <div mat-dialog-content>-->
+<!--    <form [formGroup]="form" (ngSubmit)="submit()">-->
+
+<!--      <p>-->
+<!--        <mat-form-field>-->
+<!--          <input type="text" matInput placeholder="{{ 'SIGN_IN.LOGIN' | translate }}" formControlName="login">-->
+<!--          <mat-error *ngIf="login.hasError('emailError') && !login.hasError('required')">-->
+<!--            {{ 'SIGN_IN.VALID_EMAIL' | translate }}-->
+<!--          </mat-error>-->
+<!--          <mat-error *ngIf="login.hasError('nameError') && !login.hasError('required')">-->
+<!--            {{ 'SIGN_IN.VALID_LOGIN' | translate }}-->
+<!--          </mat-error>-->
+<!--          <mat-error *ngIf="login.hasError('required')">-->
+<!--            {{ 'SIGN_IN.REQUIRED_LOGIN' | translate }}-->
+<!--          </mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </p>-->
+
+<!--      <p>-->
+<!--        <mat-form-field>-->
+<!--          <input type="password" matInput placeholder="{{ 'SIGN_IN.PASSWORD' | translate }}" formControlName="password">-->
+<!--          <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">-->
+<!--            {{ 'SIGN_IN.PASSWORD_6_CHARACTERS' | translate }}-->
+<!--          </mat-error>-->
+<!--          <mat-error *ngIf="password.hasError('required')">-->
+<!--            {{ 'SIGN_IN.REQUIRED_PASSWORD' | translate }}-->
+<!--          </mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </p>-->
+
+<!--      <p *ngIf="error" class="error">-->
+<!--        {{ error }}-->
+<!--      </p>-->
+<!--      <p *ngIf="!showErrorMessage">-->
+<!--        {{ 'SIGN_IN.BLOCK' | translate }}-->
+<!--      </p>-->
+<!--      <div class="button">-->
+<!--        <button mat-button (click)="onNoClick()">{{ 'SIGN_IN.EXIT' | translate }}</button>-->
+<!--        <button type="submit" mat-button [disabled]="form.invalid"-->
+<!--                [mat-dialog-close]="dialogAccount">{{ 'SIGN_IN.LOGIN' | translate }}</button>-->
+<!--      </div>-->
+
+<!--      <div class="text-left">-->
+<!--        <a class="text-small-ref" (click)="redirect('sign_up')">-->
+<!--          {{ 'SIGN_IN.CREATE_ACCOUNT' | translate }}-->
+<!--        </a>-->
+<!--      </div>-->
+
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->

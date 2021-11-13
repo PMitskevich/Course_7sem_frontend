@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/course-sem7-frontend'),
+      dir: require('path').join(__dirname, './coverage/quiz-netcracker-frontend'),
       subdir: '.',
       reporters: [
         { type: 'html' },

@@ -12,33 +12,29 @@
                         <a class="map_link" href="/map">Мы на карте</a>
             </span>
 <!--    <div *ngif="${#authorization.expression('isAnonymous()')}" class="unauthorized">-->
-    <div class="unauthorized">
+    <div *ngIf="!isAuthenticated" class="unauthorized">
       <span class="authorization">
         <ul>
-          <li>
-            <a href="/signUp">Регистрация</a>
-          </li>
+          <li (click)="redirect('signUp')">Регистрация</li>
         </ul>
       </span>
       <span class="authorization">
         <ul>
-          <li>
-            <a href="/login">Авторизация</a>
-          </li>
+          <li (click)="openSignInDialog()">Авторизация</li>
         </ul>
       </span>
     </div>
 
-<!--    <div class="authorized">-->
-<!--      &lt;!&ndash;    <div th:if="${#authorization.expression('hasAuthority(''USER'')')}" class="authorization">&ndash;&gt;-->
-<!--      <div class="authorization">-->
-<!--        <button class="logout" (click)="redirect('office')">Личный кабинет</button>-->
-<!--      </div>-->
-<!--      &lt;!&ndash;    <div th:if="${#authorization.expression('isAuthenticated()')}" class="authorization">&ndash;&gt;-->
-<!--      <div class="authorization">-->
-<!--        <button class="logout" (click)="logout()">Выйти</button>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div *ngIf="isAuthenticated" class="authorized">
+      <!--    <div th:if="${#authorization.expression('hasAuthority(''USER'')')}" class="authorization">-->
+      <div class="authorization">
+        <button class="logout" (click)="redirect('office')">Личный кабинет</button>
+      </div>
+      <!--    <div th:if="${#authorization.expression('isAuthenticated()')}" class="authorization">-->
+      <div class="authorization">
+        <button class="logout" (click)="logout()">Выйти</button>
+      </div>
+    </div>
 
   </div>
   <div class="bottom-header">
@@ -48,7 +44,7 @@
         <li><a href="/reviews">Отзывы</a></li>
         <li><a href="/doctors">Записаться на приём</a></li>
 <!--        <li th:if="${#authorization.expression('hasAuthority(''USER'')')}"><a th:href="@{/appointments}">Мои записи</a></li>-->
-<!--        <li><a href="/appointments">Мои записи</a></li>-->
+        <li *ngIf="isAuthenticated"><a href="/appointments">Мои записи</a></li>
       </ul>
     </div>
   </div>

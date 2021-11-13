@@ -33,12 +33,13 @@
 }
 
 .authorization ul li {
-  font-size: 1em !important;
+  /*font-size: 1em !important;*/
   list-style: none !important;
 }
 
 .authorization li, .logout {
   background: none repeat scroll 0 0 #1e696f;
+  color: #fff;
   font-weight: 200;
   margin-bottom: 5px;
   margin-left: -40px;
@@ -50,34 +51,40 @@
 .authorization li:hover {
   background: none repeat scroll 0 0 #5cd1d1;
   font-weight: 200;
+  text-decoration: underline;
   margin-bottom: 5px;
   margin-left: -40px;
   padding: 12px 10px;
   text-align: center;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.authorization li a {
-  color: #fff;
-  font-size: 14px;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: all 0.3s ease 0s;
-  height: 100%;
-  width: 100%;
-  display: inline-block;
+.authorization button {
+  cursor: pointer;
 }
 
-.authorization li a:hover {
-  color: #fff;
-  font-size: 14px;
-  text-decoration: underline;
-  text-transform: uppercase;
-  transition: all 0.3s ease 0s;
-  height: 100%;
-  width: 100%;
-  display: inline-block;
-}
+/*.authorization li a {*/
+/*  color: #fff;*/
+/*  font-size: 14px;*/
+/*  text-decoration: none;*/
+/*  text-transform: uppercase;*/
+/*  transition: all 0.3s ease 0s;*/
+/*  height: 100%;*/
+/*  width: 100%;*/
+/*  display: inline-block;*/
+/*}*/
+
+/*.authorization li a:hover {*/
+/*  color: #fff;*/
+/*  font-size: 14px;*/
+/*  text-decoration: underline;*/
+/*  text-transform: uppercase;*/
+/*  transition: all 0.3s ease 0s;*/
+/*  height: 100%;*/
+/*  width: 100%;*/
+/*  display: inline-block;*/
+/*}*/
 
 .logout {
   background: none repeat scroll 0 0 #1e696f;
