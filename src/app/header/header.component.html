@@ -11,8 +11,7 @@
                         <img src="/assets/map.jpg" [height]="45" [width]="30" alt="Карта"/>
                         <a class="map_link" href="/map">Мы на карте</a>
             </span>
-<!--    <div *ngif="${#authorization.expression('isAnonymous()')}" class="unauthorized">-->
-    <div *ngIf="!isAuthenticated" class="unauthorized">
+    <div *ngIf="!user.isAuthenticated" class="unauthorized">
       <span class="authorization">
         <ul>
           <li (click)="redirect('signUp')">Регистрация</li>
@@ -25,12 +24,10 @@
       </span>
     </div>
 
-    <div *ngIf="isAuthenticated" class="authorized">
-      <!--    <div th:if="${#authorization.expression('hasAuthority(''USER'')')}" class="authorization">-->
+    <div *ngIf="user.isAuthenticated" class="authorized">
       <div class="authorization">
         <button class="logout" (click)="redirect('office')">Личный кабинет</button>
       </div>
-      <!--    <div th:if="${#authorization.expression('isAuthenticated()')}" class="authorization">-->
       <div class="authorization">
         <button class="logout" (click)="logout()">Выйти</button>
       </div>
@@ -43,8 +40,7 @@
         <li><a href="/services">Услуги и цены</a></li>
         <li><a href="/reviews">Отзывы</a></li>
         <li><a href="/doctors">Записаться на приём</a></li>
-<!--        <li th:if="${#authorization.expression('hasAuthority(''USER'')')}"><a th:href="@{/appointments}">Мои записи</a></li>-->
-        <li *ngIf="isAuthenticated"><a href="/appointments">Мои записи</a></li>
+        <li *ngIf="user.isAuthenticated"><a href="/appointments">Мои записи</a></li>
       </ul>
     </div>
   </div>

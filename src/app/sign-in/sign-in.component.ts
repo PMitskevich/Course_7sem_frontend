@@ -19,7 +19,7 @@ export class SignInComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private dialogRef: MatDialogRef<SignInComponent>,
-              @Inject(MAT_DIALOG_DATA) dialogAccount: User,
+              @Inject(MAT_DIALOG_DATA) public data: { user },
               private userService: UserService,
               private storageService: StorageService) { }
 
@@ -56,8 +56,12 @@ export class SignInComponent implements OnInit {
             this.user.isAuthenticated = true;
             this.storageService.currentToken = response.headers.get('Authorization');
             this.storageService.currentUser = response.body['id'];
+            this.data.user.isAuthenticated = true;
           }
           this.dialogRef.close(this.form.value);
+        },
+        error => {
+          this.password.reset();
         }
       );
     }

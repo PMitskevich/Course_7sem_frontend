@@ -13,7 +13,7 @@ import {UserService} from "../service/user.service";
 })
 export class HeaderComponent implements OnInit {
 
-  isAuthenticated: boolean;
+  user: User;
 
   constructor(private router: Router,
               private dialog: MatDialog,
@@ -21,8 +21,14 @@ export class HeaderComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit(): void {
-    if (this.storageService.currentUser) {
-      this.isAuthenticated = true;
+    if (this.storageService.currentUser && this.storageService.currentToken) {
+      let currentUserId = this.storageService.currentUser;
+      this.userService.getUserById(currentUserId).subscribe(user => {
+        this.user = user;
+      });
+      this.user.isAuthenticated = true;
+    } else {
+      this.user = new User();
     }
   }
 
@@ -33,6 +39,7 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.userService.logout();
     StorageService.clear();
+    this.user.isAuthenticated = false;
     this.router.navigate(['']);
   }
 
@@ -40,6 +47,7 @@ export class HeaderComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.data = {user: this.user};
     this.dialog.open(SignInComponent, dialogConfig);
   }
 }
