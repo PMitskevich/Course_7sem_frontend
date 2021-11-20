@@ -1,0 +1,21 @@
+.container {
+  margin-top: 15px;
+}
+
+.addMedicalService .addMedicalServiceName {
+  width: 75%;
+  margin-right: 10px;
+}
+
+.addMedicalService .addMedicalServicePrice {
+  width: 20%;
+}
+
+.addMedicalService button {
+  transition: all 0.3s ease 0s;
+}
+
+.addMedicalService button:hover {
+  background: #ffa51f;
+  transition: all 0.3s ease 0s;
+}

@@ -1,0 +1,35 @@
+<div class="container">
+  <div *ngIf="specialization">
+    <!--    Добавление новой услуги-->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Добавление новой услуги
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="addMedicalService" *ngIf="medicalServiceEntityForm">
+        <form [formGroup]="medicalServiceEntityForm">
+          <mat-form-field class="addMedicalServiceName">
+            <input matInput placeholder="Название услуги" name="name"
+                   formControlName="name" required>
+            <mat-error *ngIf="medicalServiceEntityForm?.get('name').touched && medicalServiceEntityForm?.get('name').errors?.required">
+              {{ requiredFieldMessage }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="addMedicalServicePrice">
+            <input matInput placeholder="Цена услуги" name="price"
+                   formControlName="price" required>
+            <mat-error *ngIf="medicalServiceEntityForm?.get('price').touched && medicalServiceEntityForm?.get('price').errors?.required">
+              {{ requiredFieldMessage }}
+            </mat-error>
+            <mat-error *ngIf="medicalServiceEntityForm?.get('price').touched && medicalServiceEntityForm?.get('price').errors?.negative">
+              {{ priceShouldBeGreaterZeroMessage }}
+            </mat-error>
+          </mat-form-field>
+          <button mat-flat-button color="accent" [disabled]="medicalServiceEntityForm.invalid"
+                  (click)="addMedicalService()">Добавить услугу</button>
+        </form>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>

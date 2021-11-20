@@ -18,6 +18,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {InterceptorService} from "./service/interceptor.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { SignUpComponent } from './sign-up/sign-up.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import { MedicalServiceComponent } from './medical-service/medical-service.component';
+import { SpecializationConstructorComponent } from './specialization-constructor/specialization-constructor.component';
+import { MedicalServiceConstructorComponent } from './medical-service-constructor/medical-service-constructor.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,11 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     LeftBarComponent,
     FooterComponent,
     HomepageComponent,
-    SignInComponent
+    SignInComponent,
+    SignUpComponent,
+    MedicalServiceComponent,
+    SpecializationConstructorComponent,
+    MedicalServiceConstructorComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +48,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatInputModule,
     MatButtonModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule
   ],
   providers: [
     {

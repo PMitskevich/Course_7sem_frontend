@@ -11,7 +11,7 @@
                         <img src="/assets/map.jpg" [height]="45" [width]="30" alt="Карта"/>
                         <a class="map_link" href="/map">Мы на карте</a>
             </span>
-    <div *ngIf="!user.isAuthenticated" class="unauthorized">
+    <div *ngIf="user && !user.isAuthenticated" class="unauthorized">
       <span class="authorization">
         <ul>
           <li (click)="redirect('signUp')">Регистрация</li>
@@ -24,8 +24,8 @@
       </span>
     </div>
 
-    <div *ngIf="user.isAuthenticated" class="authorized">
-      <div class="authorization">
+    <div *ngIf="user && user.isAuthenticated" class="authorized">
+      <div *ngIf="user.role === 'USER'" class="authorization">
         <button class="logout" (click)="redirect('office')">Личный кабинет</button>
       </div>
       <div class="authorization">
@@ -40,7 +40,7 @@
         <li><a href="/services">Услуги и цены</a></li>
         <li><a href="/reviews">Отзывы</a></li>
         <li><a href="/doctors">Записаться на приём</a></li>
-        <li *ngIf="user.isAuthenticated"><a href="/appointments">Мои записи</a></li>
+        <li *ngIf="user && user.isAuthenticated && user.role === 'USER'"><a href="/appointments">Мои записи</a></li>
       </ul>
     </div>
   </div>

@@ -5,6 +5,7 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Valid
 import {AuthenticationUser} from "../model/AuthenticationUser";
 import {UserService} from "../service/user.service";
 import {StorageService} from "../service/storage.service";
+import {loginValidator} from "../service/validators";
 
 
 @Component({
@@ -73,10 +74,4 @@ export class SignInComponent implements OnInit {
 
 }
 
-export function loginValidator(emailRegExp: RegExp, nameRegExp: RegExp): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    return control.value.toString().indexOf('@') !== -1 ?
-      emailRegExp.test(control.value) ? null : {emailError: {value: control.value}}
-      : nameRegExp.test(control.value) ? null : {nameError: {value: control.value}};
-  };
-}
+

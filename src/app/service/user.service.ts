@@ -5,57 +5,65 @@ import {Observable, throwError} from "rxjs";
 import {User} from "../model/User";
 import {catchError} from "rxjs/operators";
 import {AuthenticationUser} from "../model/AuthenticationUser";
+import {Constants} from "../constant/Constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  url = 'http://localhost:8080/course/auth';
-
   httpOptions = {
     headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
       })
   };
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.url + "user/all")
+    return this.http.get<User[]>(Constants.ROOT_URL + "user/all")
   }
 
-  getUserById(userId: string): Observable<User> {
-    return this.http.get<User>(this.url + "user/" + userId);
+  async getUserById(userId: string): Promise<User> {
+    return this.http.get<User>(Constants.ROOT_URL + "user/" + userId).toPromise();
+      // .pipe(
+      //   catchError(err => {
+      //     console.log(err);
+      //     return throwError(err);
+      //   })
+      // )
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>(this.url + "user/addUser", user)
+    return this.http.post<User>(Constants.ROOT_URL + "user/addUser", user)
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.put<User>(this.url + "user/" + user.id, user)
+    return this.http.put<User>(Constants.ROOT_URL + "user/" + user.id, user)
       .pipe(
         catchError(error => {
-          this.router.navigate(['403']);
+          console.log(error);
           return throwError(error)
         })
       );
   }
 
   deleteUser(userId: string): Observable<User> {
-    return this.http.delete<User>(this.url + "user/" + userId)
+    return this.http.delete<User>(Constants.ROOT_URL + "user/" + userId)
       .pipe(
         catchError(error => {
-          this.router.navigate(['403']);
+          console.log(error);
           return throwError(error);
         })
       );
   }
 
   signIn(account: AuthenticationUser): Observable<HttpResponse<any>> {
-    return this.http.post<HttpResponse<any>>(this.url + "/login", account, {observe: 'response', responseType: 'json'})
+    return this.http.post<HttpResponse<any>>(Constants.ROOT_URL + "auth/login", account, {observe: 'response', responseType: 'json'})
       .pipe(
         catchError(err => {
           console.log(err);
@@ -65,7 +73,7 @@ export class UserService {
   }
 
   logout(): Observable<HttpResponse<any>> {
-    return this.http.get <HttpResponse<any>>(this.url + "/logout")
+    return this.http.get <HttpResponse<any>>(Constants.ROOT_URL + "auth/logout")
       .pipe(
         catchError(err => {
           console.log(err);

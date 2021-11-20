@@ -26,3 +26,24 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.save-button {
+  margin-top: 15px;
+}
+
+.save-button button {
+  transition: all 0.3s ease 0s;
+}
+
+.save-button button:hover {
+  background: #ffa51f;
+  transition: all 0.3s ease 0s;
+}
+
+h2.title {
+  font-size: 1.5em;
+  color: #1e696f;
+  line-height: normal;
+  border-bottom: 1px dotted #1e696f!important;
+  padding-bottom: 10px;
+}

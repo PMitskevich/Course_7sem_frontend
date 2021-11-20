@@ -1,0 +1,57 @@
+<div class="newSpecialization">
+  <h2 class="title">Создание новой специализации</h2>
+  <mat-expansion-panel [expanded]="true">
+    <div *ngIf="specializationForm">
+      <form class="specializationInfo" [formGroup]="specializationForm">
+        <mat-form-field>
+          <input matInput placeholder="Название специализации" name="name"
+                 formControlName="name" required>
+          <mat-error *ngIf="specializationForm?.get('name').touched && specializationForm?.get('name').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Описание" name="description"
+                 formControlName="description" required>
+          <mat-error *ngIf="specializationForm?.get('description').touched && specializationForm?.get('description').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+<!--        Добавить массив мед. услуг-->
+        <div formArrayName="medicalServiceEntities"
+             *ngFor="let medicalServiceEntityForm of specializationForm.get('medicalServiceEntities')['controls']; index as i">
+          <div class="medicalServiceEntity" [formGroupName]="i">
+            <mat-form-field class="specialization-medicalServiceName">
+              <input matInput placeholder="Название услуги" name="name"
+                     formControlName="name" required (blur)="updateMedicalService(i)">
+              <mat-error *ngIf="specializationForm.get('medicalServiceEntities')['controls'][i].get('name').touched
+                && specializationForm.get('medicalServiceEntities')['controls'][i]?.get('name').errors?.required">
+                {{ requiredFieldMessage }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="specialization-medicalServicePrice">
+              <input matInput placeholder="Цена услуги" name="price"
+                     formControlName="price" required (blur)="updateMedicalService(i)">
+              <mat-error *ngIf="specializationForm.get('medicalServiceEntities')['controls'][i].get('price').touched
+                && specializationForm.get('medicalServiceEntities')['controls'][i]?.get('name').errors?.required">
+                {{ requiredFieldMessage }}
+              </mat-error>
+              <mat-error *ngIf="specializationForm.get('medicalServiceEntities')['controls'][i].get('price').touched
+                && checkNegativePrice(i)">
+                {{ priceShouldBeGreaterZeroMessage }}
+              </mat-error>
+            </mat-form-field>
+            <button mat-flat-button color="warn" class="deleteMedicalServiceButton"
+                    (click)="deleteMedicalService(i)">Удалить</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </mat-expansion-panel>
+  <app-medical-service-constructor [specialization]="specialization" [specializationForm]="specializationForm">
+  </app-medical-service-constructor>
+  <div class="save-button">
+    <button mat-flat-button color="accent" [disabled]="specializationForm.invalid"
+            (click)="saveSpecialization()">Сохранить</button>
+  </div>
+</div>

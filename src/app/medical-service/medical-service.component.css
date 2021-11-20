@@ -1,0 +1,68 @@
+.header {
+  display: flex;
+}
+
+tr {
+  display: table-row;
+}
+
+td {
+  display: table-cell;
+  width: 90%;
+  padding: 5px;
+}
+
+.inner-container {
+  width: 650px;
+}
+
+.header .title, .price {
+  background: none 0 0 repeat scroll rgb(95, 185, 194);
+}
+
+.price, .header .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+}
+
+.header .title {
+  width: 80%;
+  border-width: 3px 2px 3px 3px;
+  border-style: solid;
+  border-color: black;
+}
+
+.price {
+  width: 20%;
+  border-width: 3px 3px 3px 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+td.specialization-title {
+  background: none 0 0 repeat scroll rgb(95, 185, 194);
+}
+
+.specialization-title span {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 35%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons span {
+  width: 40% !important;
+}
+
+.another-container {
+  display: flex;
+  width: 40%;
+  flex: 1 0 auto;
+  justify-content: space-around;
+}

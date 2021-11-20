@@ -50,12 +50,21 @@ export class InterceptorService {
     //   unauthorized = value.ERROR.AUTHORIZATION;
     // });
     if (errorResponse.error) {
+      console.log(errorResponse);
       if (errorResponse.error.errorTitle && errorResponse.error.errorCode && errorResponse.error.message) {
         message = `${errorTitle}: ${errorResponse.error.errorTitle}\n` +
           `${errorCode}: ${errorResponse.error.errorCode}\n` +
           `${errorMessage}: ${errorResponse.error.message}`;
       } else {
-        message = errorResponse.message;
+        if (errorResponse.status == 403) {
+          message = 'Доступ запрещён, пожалуйста авторизуйтесь';
+        }
+        if (errorResponse.status == 500 && errorResponse.statusText === 'OK' && errorResponse.url.includes('/course/user')) {
+          StorageService.clear();
+          message = 'Аутентификационный токет истёк или является невалидным';
+        } else {
+          message = errorResponse.message;
+        }
       }
     }
     if (snackbarAction) {

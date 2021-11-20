@@ -2,10 +2,13 @@
   display: flex;
   padding-right: 3%;
   padding-left: 3%;
+  background: white;
+  padding-bottom: 3%;
 }
 
 app-left-bar {
-  flex-basis: 23%;
+  /*flex-basis: 23%;*/
+  min-width: 15%;
 }
 
 router-outlet {

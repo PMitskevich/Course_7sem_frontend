@@ -20,12 +20,10 @@ export class HeaderComponent implements OnInit {
               private storageService: StorageService,
               private userService: UserService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     if (this.storageService.currentUser && this.storageService.currentToken) {
       let currentUserId = this.storageService.currentUser;
-      this.userService.getUserById(currentUserId).subscribe(user => {
-        this.user = user;
-      });
+      this.user = await this.userService.getUserById(currentUserId);
       this.user.isAuthenticated = true;
     } else {
       this.user = new User();

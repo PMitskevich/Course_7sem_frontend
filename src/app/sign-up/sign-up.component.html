@@ -1,0 +1,76 @@
+<div class="sign-up-container">
+  <h2 class="title">Регистрация нового пользователя</h2>
+  <mat-expansion-panel [expanded]="true">
+    <div *ngIf="ownerForm">
+      <form [formGroup]="ownerForm">
+        <mat-form-field>
+          <input matInput placeholder="Фамилия" name="lastName"
+                 formControlName="lastName" required>
+          <mat-error *ngIf="ownerForm?.get('lastName').touched && ownerForm?.get('lastName').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Имя" name="firstName"
+                 formControlName="firstName" required>
+          <mat-error *ngIf="ownerForm?.get('firstName').touched && ownerForm?.get('firstName').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Отчество" name="patronymic"
+                 formControlName="patronymic" required>
+          <mat-error *ngIf="ownerForm?.get('patronymic').touched && ownerForm?.get('patronymic').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Адрес" name="address"
+                 formControlName="address" required>
+          <mat-error *ngIf="ownerForm?.get('address').touched && ownerForm?.get('address').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Почта" name="email"
+                 formControlName="email" required>
+          <mat-error *ngIf="ownerForm?.get('email').touched && ownerForm?.get('email').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+          <mat-error *ngIf="ownerForm?.get('email').touched && (ownerForm?.get('email').errors?.emailError
+              || ownerForm?.get('email').errors?.nameError)">
+            {{ wrongEmailMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Телефон: +375 (хх) ххх хх хх" name="phone"
+                 formControlName="phone" required>
+          <mat-error *ngIf="ownerForm?.get('phone').touched && ownerForm?.get('phone').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Пароль" name="password" type="password"
+                 formControlName="password" required>
+          <mat-error *ngIf="ownerForm?.get('password').touched && ownerForm?.get('password').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Повтор пароля" name="passwordRepeat" type="password"
+                 formControlName="passwordRepeat" required>
+          <mat-error *ngIf="ownerForm?.get('passwordRepeat').touched && ownerForm?.get('passwordRepeat').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+          <mat-error *ngIf="ownerForm?.get('passwordRepeat').touched && ownerForm?.get('passwordRepeat').errors?.mustMatch">
+            {{ passwordsAreNotEqualMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <div mat-dialog-actions align="end">
+          <button mat-flat-button color="accent" [disabled]="ownerForm.invalid"
+                  (click)="addOwner()">Зарегистрироваться!</button>
+        </div>
+      </form>
+    </div>
+  </mat-expansion-panel>
+</div>
