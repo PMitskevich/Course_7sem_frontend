@@ -37,10 +37,10 @@ export class SpecializationConstructorComponent implements OnInit {
 
   createSpecializationForm(): void {
     let name = this.specialization.name ? this.specialization.name : '';
-    let description = this.specialization.description ? this.specialization.description : '';
+    // let description = this.specialization.description ? this.specialization.description : '';
     this.specializationForm = this.formBuilder.group({
       name: [name, [Validators.required]],
-      description: [description, [Validators.required]],
+      // description: [description, [Validators.required]],
       medicalServiceEntities: this.formBuilder.array(this.createMedicalServiceEntityFormArray())
     });
   }
@@ -98,7 +98,7 @@ export class SpecializationConstructorComponent implements OnInit {
 
   saveSpecialization(): void {
     this.specialization.name = this.specializationForm.get('name').value;
-    this.specialization.description = this.specializationForm.get('description').value;
+    // this.specialization.description = this.specializationForm.get('description').value;
     if (this.specialization.id) {
       console.log('Обновление специализации');
       this.specializationService.updateSpecialization(this.specialization).subscribe(response => {

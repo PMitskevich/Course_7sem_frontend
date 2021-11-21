@@ -1,10 +1,7 @@
 <div class="left-bar">
   <ul>
-    <li *ngFor="let specialization of specializations">{{specialization.name}}</li>
+    <li *ngFor="let specialization of specializations" (click)="redirect('services/' + specialization.id)">
+      {{specialization.name}}
+    </li>
   </ul>
-<!--  <form name="left_bar_specialization" class="left-bar"-->
-<!--        th:object="${specializations}" th:each="specialization, iterStat: ${specializations}" th:action="@{/specialization}" th:method="get">-->
-<!--    <input type="hidden" name="specializationId" th:value="${specialization.id}">-->
-<!--    <button class="submitButton" type="submit" th:text="${specialization.name}"></button>-->
-<!--  </form>-->
 </div>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Specialization} from "../model/Specialization";
 import {Doctor} from "../model/Doctor";
 import {MedicalServiceEntity} from "../model/MedicalServiceEntity";
+import {SpecializationService} from "../service/specialization.service";
+import {CustomRouterService} from "../service/custom-router.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-left-bar',
@@ -9,25 +12,17 @@ import {MedicalServiceEntity} from "../model/MedicalServiceEntity";
   styleUrls: ['./left-bar.component.css']
 })
 export class LeftBarComponent implements OnInit {
-  specializations: Specialization[] = [{
-    id: "1",
-    name: "Ратолог",
-    description: "Врач, лечащий крыс",
-    doctor: undefined,
-    medicalServiceEntities: undefined
-  },
-  {
-    id: "2",
-    name: "Ветеринар",
-    description: "Врач общей практики",
-    doctor: undefined,
-    medicalServiceEntities: undefined
-  }];
+  specializations: Specialization[];
 
-  constructor() { }
+  constructor(private specializationService: SpecializationService,
+              private router: Router) { }
 
-  ngOnInit(): void {
-    // Написать логику, при которой из SpecializationService подтягивались бы специализации и заполнялся массив specializations
+  async ngOnInit(): Promise<void> {
+    this.specializations = await this.specializationService.getAllSpecializations();
   }
 
+  redirect(url: string) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function() { return false; };
+    this.router.navigate([url]);
+  }
 }

@@ -10,13 +10,13 @@
             {{ requiredFieldMessage }}
           </mat-error>
         </mat-form-field><br>
-        <mat-form-field>
-          <input matInput placeholder="Описание" name="description"
-                 formControlName="description" required>
-          <mat-error *ngIf="specializationForm?.get('description').touched && specializationForm?.get('description').errors?.required">
-            {{ requiredFieldMessage }}
-          </mat-error>
-        </mat-form-field><br>
+<!--        <mat-form-field>-->
+<!--          <input matInput placeholder="Описание" name="description"-->
+<!--                 formControlName="description" required>-->
+<!--          <mat-error *ngIf="specializationForm?.get('description').touched && specializationForm?.get('description').errors?.required">-->
+<!--            {{ requiredFieldMessage }}-->
+<!--          </mat-error>-->
+<!--        </mat-form-field><br>-->
 <!--        Добавить массив мед. услуг-->
         <div formArrayName="medicalServiceEntities"
              *ngFor="let medicalServiceEntityForm of specializationForm.get('medicalServiceEntities')['controls']; index as i">
