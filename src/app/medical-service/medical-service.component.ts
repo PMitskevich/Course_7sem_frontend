@@ -5,6 +5,8 @@ import {User} from "../model/User";
 import {Router} from "@angular/router";
 import {StorageService} from "../service/storage.service";
 import {UserService} from "../service/user.service";
+import {CustomRouterService} from "../service/custom-router.service";
+import {element} from "protractor";
 
 @Component({
   selector: 'app-medical-service',
@@ -17,7 +19,7 @@ export class MedicalServiceComponent implements OnInit {
   user: User;
 
   constructor(private specializationService: SpecializationService,
-              private router: Router,
+              private router: CustomRouterService,
               private storageService: StorageService,
               private userService: UserService) { }
 
@@ -28,18 +30,22 @@ export class MedicalServiceComponent implements OnInit {
       this.user = await this.userService.getUserById(userId);
       this.user.isAuthenticated = true;
     }
-    console.log(this.user && this.user.isAuthenticated && this.user.role === 'ADMIN');
-  }
-
-  redirect(url: string): void {
-    this.router.navigate([url]);
   }
 
   deleteSpecialization(specializationId: string): void {
+    this.specializations.forEach((element, index) => {
+      if (element.id === specializationId) {
+        this.specializations.splice(index, 1);
+      }
+    })
     this.specializationService.deleteSpecialization(specializationId).subscribe();
   }
 
   createSpecialization(): void {
-    this.redirect('specialization/addSpecialization');
+    this.router.redirect('specialization/addSpecialization');
+  }
+
+  redirect(url: string): void {
+    this.router.redirect(url);
   }
 }

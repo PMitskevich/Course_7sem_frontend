@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  width: 720px;
 }
 
 tr {
@@ -10,10 +11,14 @@ td {
   display: table-cell;
   width: 90%;
   padding: 5px;
+  border-width: 2px 2px 2px 2px;
+  border-style: solid;
+  border-color: black;
+  margin: 0;
 }
 
 .inner-container {
-  width: 650px;
+  width: 690px;
 }
 
 .header .title, .price {
@@ -28,26 +33,26 @@ td {
 }
 
 .header .title {
-  width: 80%;
+  width: 570px;
   border-width: 3px 2px 3px 3px;
   border-style: solid;
   border-color: black;
 }
 
 .price {
-  width: 20%;
+  width: 112px;
   border-width: 3px 3px 3px 1px;
   border-style: solid;
   border-color: black;
 }
 
 td.specialization-title {
-  background: none 0 0 repeat scroll rgb(95, 185, 194);
+  min-width: 610px;
 }
 
 .specialization-title span {
   font-size: 16px;
-  font-weight: bold;
+  /*font-weight: bold;*/
   margin-left: 35%;
 }
 
@@ -65,4 +70,19 @@ td.specialization-title {
   width: 40%;
   flex: 1 0 auto;
   justify-content: space-around;
+}
+
+.service-entry {
+  border-width: 3px 3px 3px 3px;
+  border-style: solid;
+  border-color: black;
+  background: none 0 0 repeat scroll rgb(95, 185, 194);
+}
+
+.medicalServiceEntityName {
+  min-width: 560px;
+}
+
+.medicalServiceEntityPrice {
+  min-width: 100px;
 }

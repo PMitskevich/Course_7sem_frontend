@@ -5,6 +5,7 @@ import {SpecializationService} from "../service/specialization.service";
 import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from "../constant/Constants";
 import {priceNotNegativeOrZero} from "../service/validators";
+import {CustomRouterService} from "../service/custom-router.service";
 
 @Component({
   selector: 'app-specialization-constructor',
@@ -20,7 +21,8 @@ export class SpecializationConstructorComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private specializationService: SpecializationService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private router: CustomRouterService) { }
 
   async ngOnInit(): Promise<void> {
     const routeParams = this.route.snapshot.paramMap;
@@ -97,9 +99,20 @@ export class SpecializationConstructorComponent implements OnInit {
   saveSpecialization(): void {
     this.specialization.name = this.specializationForm.get('name').value;
     this.specialization.description = this.specializationForm.get('description').value;
-    console.log(this.specialization);
-    // if (this.specialization.id) {
-    //
-    // }
+    if (this.specialization.id) {
+      console.log('Обновление специализации');
+      this.specializationService.updateSpecialization(this.specialization).subscribe(response => {
+        this.router.redirect('services');
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      console.log('Создание специализации');
+      this.specializationService.createSpecialization(this.specialization).subscribe(response => {
+        this.router.redirect('services');
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 }

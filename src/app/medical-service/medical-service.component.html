@@ -11,31 +11,27 @@
     </div>
     <table *ngFor="let specialization of specializations">
       <tbody>
-      <tr>
-        <td class="specialization-title" colspan="2">
-          <div class="buttons">
-            <span>{{ specialization.name}}</span>
-            <div class="another-container" *ngIf="user && user.isAuthenticated && user.role === 'ADMIN'">
-              <button mat-flat-button color="accent" class="btn-primary" (click)="redirect('specialization/' + specialization.id)">Изменить</button>
-              <button mat-flat-button color="warn" class="btn-primary" (click)="deleteSpecialization(specialization.id)">Удалить</button>
+        <tr>
+          <td class="specialization-title" colspan="2">
+            <div class="buttons">
+              <span>{{ specialization.name}}</span>
+              <div class="another-container" *ngIf="user && user.isAuthenticated && user.role === 'ADMIN'">
+                <button mat-flat-button color="accent" class="edit-button" (click)="redirect('specialization/' + specialization.id)">Изменить</button>
+                <button mat-flat-button color="warn" class="delete-button" (click)="deleteSpecialization(specialization.id)">Удалить</button>
+              </div>
             </div>
-          </div>
-        </td>
-      </tr>
-      <tr *ngFor="let medicalServiceEntity of specialization.medicalServiceEntities">
-        <td>
-          <h6>{{ medicalServiceEntity.name }}</h6>
-        </td>
-        <td>
-          <h6>{{ medicalServiceEntity.price }}</h6>
-        </td>
-      </tr>
+          </td>
+        </tr>
+        <tr class="service-entry" *ngFor="let medicalServiceEntity of specialization.medicalServiceEntities">
+          <td class="medicalServiceEntityName">
+            <h4>{{ medicalServiceEntity.name }}</h4>
+          </td>
+          <td class="medicalServiceEntityPrice">
+            <h4>{{ medicalServiceEntity.price }}</h4>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <div class="table">
-      <div class="tbody">
-      </div>
-    </div>
     <div class="save-button" *ngIf="user && user.isAuthenticated && user.role === 'ADMIN'">
       <button mat-flat-button color="accent" (click)="createSpecialization()">Новая специализация</button>
     </div>

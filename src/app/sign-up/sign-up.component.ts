@@ -8,6 +8,7 @@ import {UserService} from "../service/user.service";
 import {loginValidator, MustMatch, phoneValidator} from "../service/validators";
 import {Router} from "@angular/router";
 import {Constants} from "../constant/Constants";
+import {CustomRouterService} from "../service/custom-router.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -26,7 +27,7 @@ export class SignUpComponent implements OnInit {
               private ownerService: OwnerService,
               private storageService: StorageService,
               private userService: UserService,
-              private router: Router) { }
+              private router: CustomRouterService) { }
 
   ngOnInit(): void {
     this.ownerForm = this.formBuilder.group({
@@ -54,12 +55,8 @@ export class SignUpComponent implements OnInit {
       this.owner.user.email = this.ownerForm.get('email').value;
       this.owner.user.password = this.ownerForm.get('password').value;
       this.ownerService.createOwner(this.owner).subscribe(response => {
-        this.redirect('homepage');
+        this.router.redirect('homepage');
       });
     }
-  }
-
-  redirect(url: string): void {
-    this.router.navigate([url]);
   }
 }

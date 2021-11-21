@@ -16,14 +16,11 @@
   width: 100px;
 }
 
-.deleteMedicalServiceButton {
+.delete-button {
   height: 50%;
-  transition: all 0.3s ease 0s;
 }
 
-.deleteMedicalServiceButton:hover {
-  background: #b30000;
-  transition: all 0.3s ease 0s;
+.delete-button:hover {
   height: 50%;
 }
 

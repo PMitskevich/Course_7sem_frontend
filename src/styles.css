@@ -31,12 +31,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-top: 15px;
 }
 
-.save-button button {
+.save-button button, .edit-button {
   transition: all 0.3s ease 0s;
 }
 
-.save-button button:hover {
+.save-button button:hover, .edit-button:hover {
   background: #ffa51f;
+  transition: all 0.3s ease 0s;
+}
+
+.delete-button {
+  transition: all 0.3s ease 0s;
+}
+
+.delete-button:hover {
+  background: #b30000;
   transition: all 0.3s ease 0s;
 }
 

@@ -37,12 +37,9 @@ export class MedicalServiceConstructorComponent implements OnInit {
     if (this.medicalServiceEntityForm.valid) {
       let name = this.medicalServiceEntityForm.get('name').value;
       let price = this.medicalServiceEntityForm.get('price').value;
-      // let medicalServiceEntityForm = this.createMedicalServiceEntityForm(name, price);
-      // console.log(medicalServiceEntityForm);
-      // this.medicalServiceEntityFormArray.push(medicalServiceEntityForm);
 
       let medicalServiceEntity = new MedicalServiceEntity();
-      medicalServiceEntity.specialization = this.specialization;
+      // medicalServiceEntity.specialization = this.specialization;
       medicalServiceEntity.name = name;
       medicalServiceEntity.price = price;
       if (!this.specialization.medicalServiceEntities) {
@@ -60,7 +57,6 @@ export class MedicalServiceConstructorComponent implements OnInit {
     if (medicalServiceEntities instanceof FormArray) {
       let medicalServiceEntity = this.createMedicalServiceEntityForm(name, price);
       medicalServiceEntities.push(medicalServiceEntity);
-      // this.specializationForm.get('medicalServiceEntities').patchValue(medicalServiceEntities);
     }
   }
 }

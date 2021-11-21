@@ -16,7 +16,6 @@ export class InterceptorService {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Interceptor started');
     if (!StorageService.isEmpty()) {
       if (this.storageService.currentUser && this.storageService.currentToken && localStorage.lang) {
         // const lang = localStorage.lang.toLowerCase().replace(/['"]+/g, '');
@@ -49,6 +48,7 @@ export class InterceptorService {
     //   errorMessage = value.ERROR.MESSAGE;
     //   unauthorized = value.ERROR.AUTHORIZATION;
     // });
+    console.log(errorResponse);
     if (errorResponse.error) {
       console.log(errorResponse);
       if (errorResponse.error.errorTitle && errorResponse.error.errorCode && errorResponse.error.message) {
@@ -59,10 +59,11 @@ export class InterceptorService {
         if (errorResponse.status == 403) {
           message = 'Доступ запрещён, пожалуйста авторизуйтесь';
         }
-        if (errorResponse.status == 500 && errorResponse.statusText === 'OK' && errorResponse.url.includes('/course/user')) {
-          StorageService.clear();
-          message = 'Аутентификационный токет истёк или является невалидным';
-        } else {
+        // if (errorResponse.status == 500 && errorResponse.statusText === 'OK' && errorResponse.url.includes('/course/user')) {
+        //   StorageService.clear();
+        //   message = 'Аутентификационный токет истёк или является невалидным';
+        // }
+        else {
           message = errorResponse.message;
         }
       }
