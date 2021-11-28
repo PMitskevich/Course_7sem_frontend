@@ -105,20 +105,40 @@ export class DoctorComponent implements OnInit {
       this.filteredDoctors = [];
       this.selectedSpecializationsArray.forEach((element, index) => {
         if (element.selected) {
-          this.doctors.forEach((doctor, doctorIndex) => {
-            doctor.specializations.forEach((specializationElement, specializationIndex) => {
-              if (specializationElement.name === element.specializationName) {
-                if (this.filteredDoctors.filter(filteredDoctor => filteredDoctor.id === doctor.id).length === 0) {
-                  this.filteredDoctors.push(doctor);
-                }
-              }
-            })
-          })
+          this.addSpecToSelectedSpecializations(element);
         }
+        // this.checkForRemoveSelectedSpecialization();
       })
     } else {
       this.filteredDoctors = this.doctors;
     }
+  }
+
+  addSpecToSelectedSpecializations(element: SelectedSpecialization): void {
+    this.doctors.forEach((doctor, doctorIndex) => {
+      doctor.specializations.forEach((specializationElement, specializationIndex) => {
+        if (specializationElement.name === element.specializationName) {
+          if (this.filteredDoctors.filter(filteredDoctor => filteredDoctor.id === doctor.id).length === 0) {
+            this.filteredDoctors.push(doctor);
+          }
+        }
+      })
+    })
+  }
+
+  checkForRemoveSelectedSpecialization(): void {
+    this.selectedSpecializationsArray.forEach((selectedSpec, selectedIndex) => {
+      if (!selectedSpec.selected) {
+        console.log(selectedSpec);
+        this.filteredDoctors.forEach((doctor, index) => {
+          doctor.specializations.forEach((specializationElement, specializationIndex) => {
+            if (specializationElement.name === selectedSpec.specializationName) {
+              this.filteredDoctors.splice(index, 1);
+            }
+          })
+        })
+      }
+    })
   }
 
   redirect(url: string) {
