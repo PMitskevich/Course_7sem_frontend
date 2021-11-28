@@ -22,6 +22,7 @@ export class SignUpComponent implements OnInit {
   requiredFieldMessage = Constants.REQUIRED_FIELD_MESSAGE;
   wrongEmailMessage = Constants.WRONG_EMAIL_MESSAGE;
   passwordsAreNotEqualMessage = Constants.PASSWORDS_ARE_NOT_EQUAL_MESSAGE;
+  phoneDoesntMatchPattern = Constants.PHONE_DOESNT_MATCH_PATTERN;
 
   constructor(private formBuilder: FormBuilder,
               private ownerService: OwnerService,

@@ -23,6 +23,10 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import { MedicalServiceComponent } from './medical-service/medical-service.component';
 import { SpecializationConstructorComponent } from './specialization-constructor/specialization-constructor.component';
 import { MedicalServiceConstructorComponent } from './medical-service-constructor/medical-service-constructor.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { DoctorConstructorComponent } from './doctor-constructor/doctor-constructor.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -36,21 +40,25 @@ import { MedicalServiceConstructorComponent } from './medical-service-constructo
     SignUpComponent,
     MedicalServiceComponent,
     SpecializationConstructorComponent,
-    MedicalServiceConstructorComponent
+    MedicalServiceConstructorComponent,
+    DoctorComponent,
+    DoctorConstructorComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatExpansionModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatExpansionModule,
+        MatCheckboxModule,
+        MatSelectModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

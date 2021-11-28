@@ -1,0 +1,44 @@
+<div class="doctors">
+  <h2 class="title">Наши профессионалы</h2>
+  <div class="one_more_container">
+    <div class="doctor_specialization_container">
+      <div class="available_doctors" *ngFor="let doctor of filteredDoctors">
+        <div class="doctor_info">
+          <h2 class="doctor_name">{{ doctor.lastName + ' ' + doctor.firstName + ' ' + doctor.patronymic }}</h2>
+          <div class="doctor-specialization">
+            <span class="doctor_info_title">Специализация: </span>
+            <div class="doctor_specializations" *ngFor="let specialization of doctor.specializations">
+              <span>{{ ' ' + specialization.name + ';' }}</span>
+            </div>
+          </div>
+          <div class="doctor_experience">
+            <span class="doctor_info_title">Стаж: </span>
+            <span>{{ doctor.experience }}</span>
+          </div>
+          <div class="buttons" *ngIf="user && user.isAuthenticated && user.role === 'ADMIN'">
+            <button mat-flat-button color="accent" class="edit-button" (click)="redirect('doctor/' + doctor.id)">Изменить</button>
+            <button mat-flat-button color="warn" class="delete-button" (click)="deleteDoctor(doctor.id)">Удалить</button>
+          </div>
+<!--          <div class="book_button" *ngIf="user && user.isAuthenticated && user.role === 'USER'">-->
+<!--            <button class="btn btn-outline-success btn-sm" (click)="bookAppointment(doctor.id)">Записаться на приём</button>-->
+<!--&lt;!&ndash;            <form name="book" th:action="@{|/appointments/chooseDate/${}|}" th:method="get">&ndash;&gt;-->
+<!--&lt;!&ndash;            </form>&ndash;&gt;-->
+<!--          </div>-->
+        </div>
+      </div>
+    </div>
+    <div class="specialization_selection">
+      <mat-form-field appearance="fill">
+        <mat-select placeholder="Все специализации"
+                    (selectionChange)="checkSelectedSpecialization($event.value)"
+                    multiple>
+          <mat-option *ngFor="let specialization of selectedSpecializationsArray"
+                      [value]="specialization">{{ specialization.specializationName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="save-button" *ngIf="user && user.isAuthenticated && user.role === 'ADMIN'">
+    <button mat-flat-button color="accent" (click)="createDoctor()">Новая врач</button>
+  </div>
+</div>

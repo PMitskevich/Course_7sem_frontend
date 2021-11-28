@@ -1,0 +1,65 @@
+<div class="doctor-constructor">
+  <h2 class="title">Добавление нового врача</h2>
+  <mat-expansion-panel [expanded]="true">
+    <div *ngIf="doctorForm">
+      <form [formGroup]="doctorForm">
+        <mat-form-field>
+          <input matInput placeholder="Фамилия" name="lastName"
+                 formControlName="lastName" (blur)="updateField('lastName')" required>
+          <mat-error *ngIf="doctorForm?.get('lastName').touched && doctorForm?.get('lastName').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Имя" name="firstName"
+                 formControlName="firstName" (blur)="updateField('firstName')" required>
+          <mat-error *ngIf="doctorForm?.get('firstName').touched && doctorForm?.get('firstName').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Отчество" name="patronymic"
+                 formControlName="patronymic" (blur)="updateField('patronymic')" required>
+          <mat-error *ngIf="doctorForm?.get('patronymic').touched && doctorForm?.get('patronymic').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Адрес" name="address"
+                 formControlName="address" (blur)="updateField('address')" required>
+          <mat-error *ngIf="doctorForm?.get('address').touched && doctorForm?.get('address').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Телефон: +375 (хх) ххх хх хх" name="phone"
+                 formControlName="phone" (blur)="updateField('phone')" required>
+          <mat-error *ngIf="doctorForm?.get('phone').touched && doctorForm?.get('phone').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+          <mat-error *ngIf="doctorForm?.get('phone').touched && doctorForm?.get('phone').errors?.phoneError">
+            {{ phoneDoesntMatchPattern }}
+          </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Стаж" name="experience"
+                 formControlName="experience" (blur)="updateField('experience')" required>
+          <mat-error *ngIf="doctorForm?.get('experience').touched && doctorForm?.get('experience').errors?.required">
+            {{ requiredFieldMessage }}
+          </mat-error>
+        </mat-form-field><br>
+        <section class="specializations">
+          <mat-checkbox class="specialization" *ngFor="let specializationCheckBox of specializationCheckboxList; index as i"
+                        [checked]="specializationCheckBox.checked"
+                        (change)="changeState($event.checked, i)">
+            {{ specializationCheckBox.name }}
+          </mat-checkbox>
+        </section>
+        <div mat-dialog-actions align="end">
+          <button mat-flat-button color="accent" [disabled]="doctorForm.invalid"
+                  (click)="saveDoctor()">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </mat-expansion-panel>
+</div>

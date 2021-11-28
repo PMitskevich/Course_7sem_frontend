@@ -1,0 +1,58 @@
+.one_more_container {
+  display: flex;
+  width: 650px;
+}
+
+.doctor_specialization_container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.doctor-specialization {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.doctor_experience {
+  margin-bottom: 20px;
+}
+
+.available_doctors {
+  flex-basis: 70%;
+  margin-bottom: 20px;
+}
+
+.doctor_info {
+  border-style: ridge;
+  border-color: #1e696f;
+  padding: 15px;
+  width: 80%;
+}
+
+.doctor_name {
+  color: #1e696f;
+}
+
+.doctor_info_title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.book_button {
+  margin-top: 10px;
+}
+
+.specialization_selection button {
+  margin-top: 5px;
+}
+
+.addDoctor button {
+  margin-bottom: 5px;
+}

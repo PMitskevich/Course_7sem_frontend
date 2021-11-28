@@ -1,0 +1,18 @@
+.doctor-constructor {
+  width: 690px;
+}
+
+.mat-form-field {
+  width: 630px;
+}
+
+.specializations {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 30px;
+}
+
+.specialization {
+  margin: 0 10px;
+}

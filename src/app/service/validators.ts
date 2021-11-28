@@ -10,7 +10,7 @@ export function loginValidator(emailRegExp: RegExp, nameRegExp: RegExp): Validat
 
 export function phoneValidator(phoneRegExp: RegExp): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    return phoneRegExp.test(control.value) ? null : {emailError: {value: control.value}};
+    return phoneRegExp.test(control.value) ? null : {phoneError: {value: control.value}};
   }
 }
 
