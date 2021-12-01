@@ -7,7 +7,7 @@ export class Appointment {
   doctor: Doctor | undefined;
   owner: Owner | undefined;
   animal: Animal | undefined;
-  dateTime: Date | undefined;
+  dateTime: string | undefined;
 
   constructor() {
   }

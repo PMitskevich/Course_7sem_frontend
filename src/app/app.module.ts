@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +27,15 @@ import { DoctorComponent } from './doctor/doctor.component';
 import { DoctorConstructorComponent } from './doctor-constructor/doctor-constructor.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
+import { AppointmentConstructorComponent } from './appointment-constructor/appointment-constructor.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatStepperModule} from "@angular/material/stepper";
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
   declarations: [
@@ -42,29 +51,36 @@ import {MatSelectModule} from "@angular/material/select";
     SpecializationConstructorComponent,
     MedicalServiceConstructorComponent,
     DoctorComponent,
-    DoctorConstructorComponent
+    DoctorConstructorComponent,
+    AppointmentConstructorComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatExpansionModule,
-        MatCheckboxModule,
-        MatSelectModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatCardModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-    }
+    },
+    { provide: LOCALE_ID, useValue: 'ru' },
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

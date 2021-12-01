@@ -15,6 +15,9 @@
             <span class="doctor_info_title">Стаж: </span>
             <span>{{ doctor.experience }}</span>
           </div>
+          <div *ngIf="user && user.isAuthenticated && user.role === 'USER'" mat-dialog-actions align="end">
+            <button mat-flat-button color="accent" class="edit-button" (click)="redirect('bookAppointment/' + doctor.id)">Записаться на приём</button>
+          </div>
           <div class="buttons" *ngIf="user && user.isAuthenticated && user.role === 'ADMIN'">
             <button mat-flat-button color="accent" class="edit-button" (click)="redirect('doctor/' + doctor.id)">Изменить</button>
             <button mat-flat-button color="warn" class="delete-button" (click)="deleteDoctor(doctor.id)">Удалить</button>

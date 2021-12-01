@@ -1,0 +1,93 @@
+.appointment-constructor {
+  width: 650px;
+}
+
+.dates, .times {
+  margin-top: 15px;
+}
+
+.dates h2 {
+  font-family: 'Noto Sans JP', sans-serif;
+  text-align: center;
+  color: #1e696f;
+  padding-top: 0;
+}
+
+.month-info, .time-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.calendar h5, .time-schedule h5 {
+  text-align: center;
+  color: grey;
+}
+
+.day, .time {
+  flex: 1 0 21%;
+  margin: 5px;
+  display: flex;
+  justify-content: space-around;
+  height: 45px;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
+  transition: 0.3s;
+  font-family: 'Noto Sans JP', sans-serif;
+  width: 100%;
+  margin: 5px; /* or whatever you like */
+}
+
+button:hover {
+  color: white;
+  background: #1cc942;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
+  transition: 0.3s;
+  font-family: 'Noto Sans JP', sans-serif;
+  width: 100%;
+  margin: 5px; /* or whatever you like */
+}
+
+.animal-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.animal-form {
+  border-style: ridge;
+  border-color: #1e696f;
+  /*width: 70%;*/
+  flex-basis: 60%;
+  padding: 15px;
+}
+
+.animal-selection {
+  margin-left: 15px;
+  flex-basis: 30%;
+}
+
+mat-form-field {
+  width: 80%;
+  margin-left: 15px;
+}

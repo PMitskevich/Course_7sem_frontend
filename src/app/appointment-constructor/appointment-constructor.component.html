@@ -1,0 +1,108 @@
+<div class="appointment-constructor">
+  <h2 class="title">Создание записи на приём</h2>
+  <mat-card *ngIf="doctor">
+    <mat-card-content>
+      <div class="container">
+        <mat-horizontal-stepper [linear]="true">
+          <mat-step [stepControl]="firstStepForm">
+            <ng-template matStepLabel>Выбор даты</ng-template>
+            <div class="dates">
+              <h2>{{ doctor.lastName + ' ' + doctor.firstName + ' ' + doctor.patronymic}}</h2>
+              <div class="calendar">
+                <div class="month-info">
+                  <div class="day" *ngFor="let day of doctor.scheduleDays">
+                    <button *ngIf="day.isBlocked" disabled>{{ day.date | date:'EEE, d MMM ' }}</button>
+                    <button *ngIf="!day.isBlocked" matStepperNext (click)="setSelectedDay(day)">{{ day.date | date:'EEE, MMM d' }}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="secondStepForm">
+            <ng-template matStepLabel>Выбор времени</ng-template>
+            <div class="times" *ngIf="selectedDay">
+              <div class="time-schedule">
+                <div class="time-info">
+                  <div class="time" *ngFor="let time of selectedDay.scheduleTimes">
+                    <button *ngIf="time.isBlocked" disabled>{{ getTime(time) }}</button>
+                    <button *ngIf="!time.isBlocked" matStepperNext (click)="setSelectedTime(time)">{{ getTime(time) }}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="thirdStepForm">
+            <ng-template matStepLabel>Данные о животном</ng-template>
+            <div class="animal-info">
+              <form class="animal-form" [formGroup]="thirdStepForm">
+                <mat-form-field>
+                  <input matInput placeholder="Кличка" formControlName="name" required>
+                  <mat-error *ngIf="thirdStepForm?.get('name').touched && thirdStepForm?.get('name').errors?.required">
+                    {{ requiredFieldMessage }}
+                  </mat-error>
+                </mat-form-field><br>
+
+                <mat-form-field>
+                  <mat-label>Дата рождения</mat-label>
+                  <input matInput [max]="currentDate" [matDatepicker]="picker" formControlName="birthday">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="thirdStepForm?.get('name').touched && thirdStepForm?.get('name').errors?.required">
+                    {{ requiredFieldMessage }}
+                  </mat-error>
+                </mat-form-field><br>
+
+                <mat-form-field>
+                  <input matInput placeholder="Порода" formControlName="breed" required>
+                  <mat-error *ngIf="thirdStepForm?.get('breed').touched && thirdStepForm?.get('breed').errors?.required">
+                    {{ requiredFieldMessage }}
+                  </mat-error>
+                </mat-form-field><br>
+
+                <mat-form-field *ngIf="animal.id">
+                  <mat-select (selectionChange)="changeGender($event.value)" disabled>
+                    <mat-option *ngFor="let gender of genders"
+                                [value]="gender">{{ gender }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="!animal.id">
+                  <mat-select [(value)]="selectedGender" (selectionChange)="changeGender($event.value)" formControlName="gender">
+                    <mat-option *ngFor="let gender of genders"
+                                [value]="gender">{{ gender }}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="thirdStepForm?.get('name').touched && thirdStepForm?.get('name').errors?.required">
+                    {{ requiredFieldMessage }}
+                  </mat-error>
+                </mat-form-field><br>
+
+                <div mat-dialog-actions align="end">
+                  <button mat-flat-button color="accent" [disabled]="thirdStepForm.invalid"
+                          (click)="addAppointment()">Записаться</button>
+                </div>
+              </form>
+
+              <div class="animal-selection" *ngIf="user && user.owner">
+                <mat-form-field *ngIf="user.owner.animals.length !== 0">
+                  <mat-select (selectionChange)="selectExistingAnimal($event.value)">
+                    <mat-option *ngFor="let animal of this.user.owner.animals; i as index"
+                                [value]="index">{{ animal.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field><br>
+                <mat-form-field *ngIf="user.owner.animals.length === 0">
+                  <mat-select disabled>
+                    <mat-option>У Вас нет сохраннёных животных</mat-option>
+                  </mat-select>
+                </mat-form-field><br>
+
+                <button mat-flat-button color="warn" class="delete-button" *ngIf="this.animal.id"
+                        (click)="cancelSelectedAnimal()">Отменить</button>
+                <button mat-flat-button color="warn" class="delete-button" *ngIf="!this.animal.id" disabled>Отменить</button>
+              </div>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
