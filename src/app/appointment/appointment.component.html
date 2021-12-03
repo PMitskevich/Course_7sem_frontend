@@ -1,0 +1,41 @@
+<div class="container">
+  <h2 class="title">Записи на приём</h2>
+  <div class="appointments" *ngIf="appointments">
+    <div class="appointment" *ngFor="let appointment of appointments; index as i">
+      <div class="doctorInfo">
+        <div class="field">
+          <span class="info_title">Врач: </span>
+          <span>{{ appointment.doctor.lastName + ' ' + appointment.doctor.firstName + ' ' + appointment.doctor.patronymic }}</span>
+        </div>
+      </div>
+      <div class="animalInfo">
+        <div class="field">
+          <span class="info_title">Имя животного: </span>
+          <span>{{ appointment.animal.name }}</span>
+        </div>
+        <div class="field">
+          <span class="info_title">Порода: </span>
+          <span>{{ appointment.animal.breed }}</span>
+        </div>
+        <div class="field">
+          <span class="info_title">Пол: </span>
+          <span>{{ appointment.animal.gender }}</span>
+        </div>
+        <div class="field">
+          <span class="info_title">Дата рождения: </span>
+          <span>{{ appointment.animal.birthday }}</span>
+        </div>
+      </div>
+      <div class="appointmentDate">
+        <span class="info_title">Дата приёма: </span>
+        <span>{{ appointment.dateTime }}</span>
+      </div>
+      <div mat-dialog-actions align="end">
+        <button mat-flat-button color="warn" class="delete-button" (click)="cancelAppointment(i)">Удалить</button>
+      </div>
+    </div>
+  </div>
+  <div class="noAppointments" *ngIf="appointments.length === 0">
+    <h1>У вас нет записей на приём</h1>
+  </div>
+</div>

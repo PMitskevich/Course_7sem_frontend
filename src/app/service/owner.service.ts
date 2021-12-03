@@ -20,8 +20,8 @@ export class OwnerService {
 
   constructor(private http: HttpClient) { }
 
-  getOwnerById(ownerId: string): Observable<Owner> {
-    return this.http.get<Owner>(Constants.ROOT_URL + "owner/" + ownerId);
+  async getOwnerById(ownerId: string): Promise<Owner> {
+    return this.http.get<Owner>(Constants.ROOT_URL + "owner/" + ownerId).toPromise();
   }
 
   createOwner(owner: Owner): Observable<Owner> {
@@ -34,8 +34,8 @@ export class OwnerService {
       );
   }
 
-  updateOwner(owner: Owner): Observable<Owner> {
-    return this.http.put<Owner>(Constants.ROOT_URL + "owner/" + owner.id, owner)
+  updateOwner(owner: Owner): Observable<HttpResponse<any>> {
+    return this.http.put<HttpResponse<any>>(Constants.ROOT_URL + "owner/" + owner.id, owner)
       .pipe(
         catchError(error => {
           console.log(error);

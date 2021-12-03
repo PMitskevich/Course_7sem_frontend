@@ -19,14 +19,16 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     const control = formGroup.controls[controlName];
     const matchingControl = formGroup.controls[matchingControlName];
 
-    if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+    if (matchingControl && matchingControl.errors && !matchingControl.errors.mustMatch) {
       return;
     }
 
-    if (control.value !== matchingControl.value) {
+    if (control && matchingControl && control.value !== matchingControl.value) {
       matchingControl.setErrors({ mustMatch: true });
     } else {
-      matchingControl.setErrors(null);
+      if (control && matchingControl) {
+        matchingControl.setErrors(null);
+      }
     }
   }
 }

@@ -34,6 +34,8 @@ import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { AppointmentComponent } from './appointment/appointment.component';
+import { OfficeComponent } from './office/office.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -52,7 +54,9 @@ registerLocaleData(localeRu, 'ru');
     MedicalServiceConstructorComponent,
     DoctorComponent,
     DoctorConstructorComponent,
-    AppointmentConstructorComponent
+    AppointmentConstructorComponent,
+    AppointmentComponent,
+    OfficeComponent
   ],
   imports: [
     BrowserModule,
