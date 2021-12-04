@@ -46,6 +46,9 @@ export class HeaderComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {user: this.user};
-    this.dialog.open(SignInComponent, dialogConfig);
+    let dialogRef = this.dialog.open(SignInComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      window.location.reload();
+    })
   }
 }

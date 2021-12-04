@@ -32,6 +32,7 @@ export class AppointmentConstructorComponent implements OnInit {
   animal: Animal;
   genders: Gender[] = [Gender.MALE, Gender.FEMALE];
   selectedGender: string;
+  selectedAnimal: string;
   user: User;
   requiredFieldMessage = Constants.REQUIRED_FIELD_MESSAGE;
 
@@ -55,10 +56,14 @@ export class AppointmentConstructorComponent implements OnInit {
       this.user = await this.userService.getUserById(userId);
     }
     this.selectedGender = Gender.MALE;
-    console.log(this.user.owner.animals);
+    this.selectedAnimal = this.user.owner.animals[0].name;
   }
 
   setSelectedDay(selectedDay: ScheduleDay): void {
+    if(this.secondStepForm.get('secondStepCompleted').value) {
+      this.secondStepForm.get('secondStepCompleted').setValue(false);
+      this.selectedTime = null;
+    }
     this.selectedDay = selectedDay;
     this.firstStepForm.get('firstStepCompleted').patchValue(true);
   }
@@ -66,6 +71,7 @@ export class AppointmentConstructorComponent implements OnInit {
   setSelectedTime(selectedTime: ScheduleTime): void {
     this.selectedTime = selectedTime;
     this.secondStepForm.get('secondStepCompleted').patchValue(true);
+    this.thirdStepForm = this.fillThirdStepFormGroup();
   }
 
   getTime(time: ScheduleTime): string {
@@ -83,13 +89,6 @@ export class AppointmentConstructorComponent implements OnInit {
     })
   }
 
-  // private static getGenderVariableName(gender: string) {
-  //   switch (gender) {
-  //     case 'Мужской': return 'MALE';
-  //     case 'Женский': return 'FEMALE';
-  //   }
-  // }
-
   initializeFormGroups(): void {
     this.firstStepForm = this.formBuilder.group({
       firstStepCompleted: [false, [Validators.requiredTrue]]
@@ -101,6 +100,10 @@ export class AppointmentConstructorComponent implements OnInit {
   }
 
   fillThirdStepFormGroup(animal?: Animal): FormGroup {
+    console.log(animal);
+    if (animal) {
+      this.selectedGender = animal.gender;
+    }
     return <FormGroup> this.formBuilder.group({
       name: [animal ? animal.name : '', [Validators.required]],
       birthday: [animal ? animal.birthday : '', [Validators.required]],
@@ -109,8 +112,20 @@ export class AppointmentConstructorComponent implements OnInit {
     });
   }
 
-  selectExistingAnimal(index: number) {
-    this.animal = this.user.owner.animals[index];
+  changeSelectedAnimal(animalName: string): void {
+    for (let i = 0; i < this.user.owner.animals.length; i++) {
+      if (this.user.owner.animals[i].name === animalName) {
+        this.animal = this.user.owner.animals[i];
+        this.selectedAnimal = this.animal.name;
+        break;
+      }
+    }
+  }
+
+  selectExistingAnimal() {
+    if (!this.animal.id) {
+      this.changeSelectedAnimal(this.selectedAnimal);
+    }
     this.thirdStepForm = this.fillThirdStepFormGroup(this.animal);
   }
 

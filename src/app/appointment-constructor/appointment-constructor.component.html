@@ -60,7 +60,7 @@
                 </mat-form-field><br>
 
                 <mat-form-field *ngIf="animal.id">
-                  <mat-select (selectionChange)="changeGender($event.value)" disabled>
+                  <mat-select (selectionChange)="changeGender($event.value)" formControlName="gender" disabled>
                     <mat-option *ngFor="let gender of genders"
                                 [value]="gender">{{ gender }}</mat-option>
                   </mat-select>
@@ -84,9 +84,9 @@
 
               <div class="animal-selection" *ngIf="user && user.owner">
                 <mat-form-field *ngIf="user.owner.animals.length !== 0">
-                  <mat-select (selectionChange)="selectExistingAnimal($event.value)">
-                    <mat-option *ngFor="let animal of this.user.owner.animals; i as index"
-                                [value]="index">{{ animal.name }}</mat-option>
+                  <mat-select [(value)]="selectedAnimal" (selectionChange)="changeSelectedAnimal($event.value)">
+                    <mat-option *ngFor="let animal of this.user.owner.animals"
+                                [value]="animal.name">{{ animal.name }}</mat-option>
                   </mat-select>
                 </mat-form-field><br>
                 <mat-form-field *ngIf="user.owner.animals.length === 0">
@@ -95,6 +95,9 @@
                   </mat-select>
                 </mat-form-field><br>
 
+                <button mat-flat-button color="accent" class="edit-button" *ngIf="user.owner.animals.length !== 0"
+                        (click)="selectExistingAnimal()">Выбрать</button>
+                <button mat-flat-button color="accent" class="edit-button" *ngIf="user.owner.animals.length === 0" disabled>Выбрать</button>
                 <button mat-flat-button color="warn" class="delete-button" *ngIf="this.animal.id"
                         (click)="cancelSelectedAnimal()">Отменить</button>
                 <button mat-flat-button color="warn" class="delete-button" *ngIf="!this.animal.id" disabled>Отменить</button>

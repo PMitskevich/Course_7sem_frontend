@@ -37,6 +37,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { AppointmentComponent } from './appointment/appointment.component';
 import { OfficeComponent } from './office/office.component';
 import { ReviewComponent } from './review/review.component';
+import { MapComponent } from './map/map.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -58,7 +59,8 @@ registerLocaleData(localeRu, 'ru');
     AppointmentConstructorComponent,
     AppointmentComponent,
     OfficeComponent,
-    ReviewComponent
+    ReviewComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
