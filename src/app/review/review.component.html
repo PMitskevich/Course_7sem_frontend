@@ -1,0 +1,32 @@
+<div class="reviews">
+  <h2 class="title">Отзывы</h2>
+  <div class="no-reviews" *ngIf="!user && reviews && reviews.length === 0">
+    <h1>Отзывы отсутствуют</h1>
+  </div>
+  <div class="reviews" *ngFor="let review of reviews; index as i">
+    <div class="review">
+      <h3 class="review-owner" *ngIf="review.user.owner && review.user.role === 'USER'">
+        {{ review.user.owner.firstName.substr(0, 1) + '.' + review.user.owner.patronymic.substr(0,1)
+        + '. ' + review.user.owner.lastName }}
+      </h3>
+      <h3 class="review-owner" *ngIf="review.user.role === 'ADMIN'">
+        Администрация
+      </h3>
+      <div class="reviewInfo">
+        <p>{{ review.description }}</p>
+      </div>
+      <div mat-dialog-actions align="end" *ngIf="user && user.id && user.role === 'ADMIN'">
+        <button mat-flat-button color="warn" class="delete-button" (click)="deleteReview(i)">Удалить</button>
+      </div>
+    </div>
+  </div>
+  <div class="newReview" *ngIf="user && user.id">
+    <form [formGroup]="reviewForm">
+      <textarea placeholder="Новый отзыв" id="newDescription" formControlName="description"></textarea>
+      <div class="submit-button">
+        <button mat-flat-button color="accent" class="edit-button" [disabled]="reviewForm.invalid"
+                (click)="addReview()">Сохранить</button>
+      </div>
+    </form>
+  </div>
+</div>

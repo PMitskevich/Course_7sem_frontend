@@ -10,6 +10,7 @@ import {DoctorConstructorComponent} from "./doctor-constructor/doctor-constructo
 import {AppointmentConstructorComponent} from "./appointment-constructor/appointment-constructor.component";
 import {AppointmentComponent} from "./appointment/appointment.component";
 import {OfficeComponent} from "./office/office.component";
+import {ReviewComponent} from "./review/review.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'doctor/addDoctor', component: DoctorConstructorComponent},
   {path: 'doctor/:doctorId', component: DoctorConstructorComponent},
   {path: 'bookAppointment/:doctorId', component: AppointmentConstructorComponent},
-  {path: 'appointments', component: AppointmentComponent}
+  {path: 'appointments', component: AppointmentComponent},
+  {path: 'reviews', component: ReviewComponent}
 ];
 
 @NgModule({

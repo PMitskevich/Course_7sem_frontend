@@ -36,6 +36,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { AppointmentComponent } from './appointment/appointment.component';
 import { OfficeComponent } from './office/office.component';
+import { ReviewComponent } from './review/review.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -56,7 +57,8 @@ registerLocaleData(localeRu, 'ru');
     DoctorConstructorComponent,
     AppointmentConstructorComponent,
     AppointmentComponent,
-    OfficeComponent
+    OfficeComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
