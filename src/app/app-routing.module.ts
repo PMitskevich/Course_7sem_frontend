@@ -13,6 +13,7 @@ import {OfficeComponent} from "./office/office.component";
 import {ReviewComponent} from "./review/review.component";
 import {MapComponent} from "./map/map.component";
 import {HeaderComponent} from "./header/header.component";
+import {StatisticsComponent} from "./statistics/statistics.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'bookAppointment/:doctorId', component: AppointmentConstructorComponent},
   {path: 'appointments', component: AppointmentComponent},
   {path: 'reviews', component: ReviewComponent},
-  {path: 'map', component: MapComponent}
+  {path: 'map', component: MapComponent},
+  {path: 'statistics', component: StatisticsComponent}
 ];
 
 @NgModule({

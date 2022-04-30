@@ -1,5 +1,5 @@
 {
-  "name": "quiz-netcracker-frontend",
+  "name": "clinic",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -25,6 +25,8 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "@types/googlemaps": "^3.43.3",
     "crypto-js": "^3.1.9-1",
+    "igniteui-angular-charts": "^11.2.1",
+    "igniteui-angular-core": "^11.2.1",
     "net": "^1.0.2",
     "ngx-clipboard": "^14.0.1",
     "ngx-countdown": "^11.0.1",

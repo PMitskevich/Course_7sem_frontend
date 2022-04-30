@@ -40,6 +40,7 @@
         <li><a href="/services">Услуги и цены</a></li>
         <li><a href="/reviews">Отзывы</a></li>
         <li><a href="/doctors">Записаться на приём</a></li>
+        <li *ngIf="user && user.isAuthenticated && user.role === 'ADMIN'"><a href="/statistics">Статистика</a></li>
         <li *ngIf="user && user.isAuthenticated && user.role === 'USER'"><a href="/appointments">Мои записи</a></li>
       </ul>
     </div>

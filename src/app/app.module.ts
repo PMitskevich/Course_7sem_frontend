@@ -12,7 +12,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -38,6 +38,10 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { OfficeComponent } from './office/office.component';
 import { ReviewComponent } from './review/review.component';
 import { MapComponent } from './map/map.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import {IgxCategoryChartModule, IgxItemLegendModule, IgxLegendModule, IgxPieChartModule} from "igniteui-angular-charts";
+import { LineGraphComponent } from './line-graph/line-graph.component';
+import { CircleGraphComponent } from './circle-graph/circle-graph.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -60,7 +64,10 @@ registerLocaleData(localeRu, 'ru');
     AppointmentComponent,
     OfficeComponent,
     ReviewComponent,
-    MapComponent
+    MapComponent,
+    StatisticsComponent,
+    LineGraphComponent,
+    CircleGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +86,12 @@ registerLocaleData(localeRu, 'ru');
     MatCardModule,
     MatStepperModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    FormsModule,
+    IgxCategoryChartModule,
+    IgxLegendModule,
+    IgxPieChartModule,
+    IgxItemLegendModule
   ],
   providers: [
     {

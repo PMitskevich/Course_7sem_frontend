@@ -17,6 +17,7 @@ export class MedicalServiceComponent implements OnInit {
 
   specializations: Specialization[] = [];
   user: User;
+  selectedSpecializationId: string;
 
   constructor(private specializationService: SpecializationService,
               private router: CustomRouterService,
@@ -26,9 +27,9 @@ export class MedicalServiceComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const routeParams = this.route.snapshot.paramMap;
-    let specializationId = routeParams.get('specializationId');
-    if (specializationId) {
-      let specialization = await this.specializationService.getSpecializationById(specializationId);
+    this.selectedSpecializationId = routeParams.get('specializationId');
+    if (this.selectedSpecializationId) {
+      let specialization = await this.specializationService.getSpecializationById(this.selectedSpecializationId);
       this.specializations.push(specialization);
     } else {
       this.specializations = await this.specializationService.getAllSpecializations();
@@ -46,7 +47,11 @@ export class MedicalServiceComponent implements OnInit {
         this.specializations.splice(index, 1);
       }
     })
-    this.specializationService.deleteSpecialization(specializationId).subscribe();
+    this.specializationService.deleteSpecialization(specializationId).subscribe(response => {
+      if (this.selectedSpecializationId) {
+        this.router.redirect('services');
+      }
+    });
   }
 
   createSpecialization(): void {

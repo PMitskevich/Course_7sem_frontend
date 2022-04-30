@@ -59,7 +59,7 @@ export class DoctorConstructorComponent implements OnInit {
       firstName: [doctor.id ? doctor.firstName : '', [Validators.required]],
       patronymic: [doctor.id ? doctor.patronymic : '', [Validators.required]],
       address: [doctor.id ? doctor.address : '', [Validators.required]],
-      phone: [doctor.id ? doctor.phone : '', [Validators.required, phoneValidator(/^(\+375|80) (29|25|44|33) (\d{3}) (\d{2}) (\d{2})$/)]],
+      phone: [doctor.id ? doctor.phone : '', [Validators.required, phoneValidator(/^(\+375|80) (29|25|44|33|17) (\d{3}) (\d{2}) (\d{2})$/)]],
       experience: [doctor.id ? doctor.experience : '', [Validators.required]],
       specializationsFilled: [this.doctor.specializations.length !== 0, [Validators.requiredTrue]]
     })
